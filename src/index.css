@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Editorial Warm Design System
+   Warm light palette, serif display numbers,
+   minimal chrome, typography as hero
+   ============================================ */
+
+:root {
+  /* --- Color Tokens (warm, not cold) --- */
+  --bg-base:        #FAF8F5;   /* warm cream */
+  --bg-surface:     #FFFFFF;   /* pure white for cards */
+  --bg-subtle:      #F5F3F0;   /* slightly darker cream */
+  --bg-accent:      #EDF5F4;   /* very light teal tint */
+
+  --text-primary:   #1C1917;   /* warm near-black (stone-900) */
+  --text-secondary: #78716C;   /* warm gray (stone-500) */
+  --text-muted:     #A8A29E;   /* light warm gray (stone-400) */
+
+  --accent:         #0D7377;   /* deep teal — trust + money */
+  --accent-light:   #E6F4F4;   /* pale teal background */
+  --accent-hover:   #095A5D;   /* darker teal on hover */
+
+  --positive:       #059669;   /* emerald for savings/success */
+  --positive-bg:    #ECFDF5;   /* emerald background */
+
+  --chart-primary:  #0D7377;   /* teal for principal */
+  --chart-interest: #E8A87C;   /* warm peach for interest */
+
+  --border:         #E7E5E4;   /* warm border (stone-200) */
+  --border-strong:  #D6D3D1;   /* stronger border */
+
+  /* --- Typography Scale --- */
+  --font-display: 'Fraunces', 'Noto Serif SC', 'Georgia', serif;
+  --font-body:    'DM Sans', 'Noto Sans SC', 'Noto Sans JP', system-ui, sans-serif;
+
+  /* --- Spacing (4pt base) --- */
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  16px;
+  --space-lg:  24px;
+  --space-xl:  32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* --- Number display: tabular figures, old-style for body text --- */
+body { font-variant-numeric: oldstyle-nums; }
+.numeral-tabular { font-variant-numeric: tabular-nums lining-nums; }
+
+/* --- Custom scrollbar (warm) --- */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* --- Subtle entrance animation --- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-up {
+  animation: fadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.animate-delay-1 { animation-delay: 0.08s; opacity: 0; }
+.animate-delay-2 { animation-delay: 0.16s; opacity: 0; }
+.animate-delay-3 { animation-delay: 0.24s; opacity: 0; }
+
+/* --- Number transition on value change --- */
+.numeral-transition {
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+/* --- Section divider: thin line with breathing room --- */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: var(--space-2xl) 0;
+}
+
+/* --- Clean input reset for custom styling --- */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none; margin: 0;
+}
+input[type="number"] { -moz-appearance: textfield; }
+
+/* --- Focus ring: accent color, subtle offset --- */
+*:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* --- Print-like table styles override --- */
+.print-table th {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-bottom: 2px solid var(--accent);
+}
